@@ -1,7 +1,7 @@
 require_relative '../../db/config'
 
 class Student < ActiveRecord::Base
-
+  belongs_to :teacher
   validates :email,
             :presence => true,
             :uniqueness => true,
@@ -10,7 +10,7 @@ class Student < ActiveRecord::Base
             :presence => true
   validate  :age_greater_than_five
   validates :phone,
-            :presence => true, 
+            :presence => true,
             :format => { :with => /\(\d{3}\)\s\d{3}-\d{4}/ }
 
   def name
@@ -23,7 +23,7 @@ class Student < ActiveRecord::Base
   end
 
   def age_greater_than_five
-    errors.add(:birthday, "can't be a todler") if age < 5
+    errors.add(:birthday, "can't be a toddler") if age < 5
   end
 
 end
